@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'blocs/counter_bloc.dart';
-import 'widgets/counter_widget.dart';
+import 'blocs/todo_bloc.dart';
+import 'widgets/todo_widget.dart';
 
 void main() {
   runApp(const BlocWorkshopApp());
@@ -31,8 +31,8 @@ class BlocWorkshopHome extends StatelessWidget {
         title: const Text('BLoC Workshop'),
         centerTitle: true,
       ),
-      body: BlocProvider(
-        create: (context) => CounterBloc(),
+      body: MultiBlocProvider(
+        providers: [BlocProvider(create: (context) => TodoBloc())],
         child: BlocWorkshopContent(),
       ),
     );
@@ -44,6 +44,6 @@ class BlocWorkshopContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CounterWidget();
+    return const TodoWidget();
   }
 }
